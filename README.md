@@ -1,5 +1,7 @@
 # tidytuesday
 
+2022-10-11: Yarn ![Yarn](https://raw.githubusercontent.com/gjpstrain/tidytuesday/main/crochet/yarn_final.png?raw=true)
+
 2022-03-02: US Alternative Fuel Stations ![Fuel Stations](https://raw.githubusercontent.com/gjpstrain/tidytuesday/main/alt_stations/alternative_fuel_TX_final.png?raw=true)
 
 2022-02-22: World Freedom Index ![World Freedom Index](https://raw.githubusercontent.com/gjpstrain/tidytuesday/main/freedomTT/my_plot.png?raw=true)
