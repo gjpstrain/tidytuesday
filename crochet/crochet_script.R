@@ -23,6 +23,7 @@ theme_socks <- function() {
           axis.title.y = element_blank(),
           axis.ticks = element_blank(),
           axis.text.y = element_blank(),
+          plot.caption = element_text(size = 12, hjust = 1),
           legend.position = "none"
     )
 }
@@ -51,6 +52,7 @@ df %>%
   annotate("segment", x = 3.7, xend = 4.7, y = 3, yend = 3, colour = "black", size=1, arrow=arrow(type = "closed", length = unit(2, "mm"))) +
   labs(title = "Socks To Be Ewe!",
        x = "Yarn Manufacturer",
+       caption = "Data: Ravelry.com | Graphic: Gabe Strain",
        subtitle = "
        
 The most popular sock yarns currently available fall into
@@ -61,4 +63,3 @@ and <span style='color:brown4'>**Light Fingering (3-ply)**</span>.
 
 All use some amount of <span style='color:WHite'>Merino</span> wool.")
 
-ggsave("my_plot.png", width = 800, height = 550, units = "px", dpi = 500)
