@@ -16,10 +16,10 @@ theme_socks <- function() {
     theme(plot.background = element_rect(colour = "#E8D2A5", fill = "#E8D2A5"),
           panel.grid = element_line(colour = "#E8D2A5"),
           panel.background = element_rect(colour = "#E8D2A5", fill = "#E8D2A5"),
-          text = element_text(colour = "#653410", family = "Maven Pro"),
-          plot.title = element_text(hjust = 0, colour = "#653410", family = "Fjalla One", size = 25),
-          plot.subtitle = element_markdown(size = 12, lineheight = 0),
-          axis.title = element_text(color = "#653410", size = 10),
+          text = element_text(colour = "#653410", family = "Maven Pro", size = 20),
+          plot.title = element_text(hjust = 0, colour = "#653410", family = "Fjalla One", size = 38),
+          plot.subtitle = element_text(size = 12, hjust = 0, vjust = -3),
+          axis.title = element_text(color = "#653410", size = 15),
           axis.title.y = element_blank(),
           axis.ticks = element_blank(),
           axis.text.y = element_blank(),
@@ -36,22 +36,29 @@ df <- yarn %>%
   select(-c(discontinued, gauge_divisor, grams, id, max_gauge, min_gauge,
             rating_average, rating_count, rating_total, thread_size,
             wpi, yardage, yarn_weight_crochet_gauge)) %>%
-  mutate(image = "sock.png")
+  mutate(image = "sheep.png")
 
 df %>%
-  ggplot(aes(x = yarn_company_name, y = yarn_weight_ply)) +
-  geom_point(size = 15, shape = 16) +
+  ggplot(aes(x = yarn_company_name, y = yarn_weight_ply)) + 
+  geom_image(aes(image = image), size = 0.1, asp = 2) +
   theme_socks() +
   theme(plot.subtitle = ggtext::element_markdown()) +
   ylim(2,5) +
-  labs(title = "Socks To Be You",
+  annotate(geom = "text", x = 1, y = 4, label = "Fingering Yarn", colour ="chocolate4", angle = 0, size = 7, family = "Maven Pro") +
+  annotate(geom = "text", x = 3, y = 3, label = "Light Fingering Yarn", colour ="brown4", angle = 0, size = 7, family = "Maven Pro") +
+  annotate("segment", x = 1.5, xend = 1.7, y = 4, yend = 4, colour = "black", size=1, arrow=arrow(type = "closed", length = unit(2, "mm"))) +
+  annotate("segment", x = 2.3, xend = 1.3, y = 3, yend = 3, colour = "black", size=1, arrow=arrow(type = "closed", length = unit(2, "mm"))) +
+  annotate("segment", x = 3.7, xend = 4.7, y = 3, yend = 3, colour = "black", size=1, arrow=arrow(type = "closed", length = unit(2, "mm"))) +
+  labs(title = "Socks To Be Ewe!",
        x = "Yarn Manufacturer",
        subtitle = "
        
-The most popular sock yarns currently available fall into two
-categories of yarn weight, <span style='color:brown'>**Fingering (4-ply)**</span>
-and <span style='color:brown'>**Light Fingering (3-ply)**</span>. 
+The most popular sock yarns currently available fall into
 
-All use some amount of <span style='color:red'>Merino</span> wool.") +
-  coord_flip()
 
+two categories of yarn weight, <span style='color:chocolate4'>**Fingering (4-ply)**</span>
+and <span style='color:brown4'>**Light Fingering (3-ply)**</span>. 
+
+All use some amount of <span style='color:WHite'>Merino</span> wool.")
+
+ggsave("my_plot.png", width = 800, height = 550, units = "px", dpi = 500)
