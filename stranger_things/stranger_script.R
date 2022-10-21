@@ -53,56 +53,48 @@ sentiment_by_episode <- tidy_dialogue %>%
     condition = sentiment == "negative",
     true = "neg",
     false = "pos"
-  ))
-
+  )) %>%
+  ungroup() %>%
+  group_by(episode_id) %>%
+  mutate(average_drama = mean(total_each_sentiment))
 
 # Plotting
 
 sentiment_by_episode %>%
   ggplot() +
-  geom_bar(aes(x = episode_id, y = total_each_sentiment, fill = colour), stat = "identity") +
-  geom_segment(x = 0, xend = 68, y = 0, yend = 0, colour = "orange", size = 2) +
-  scale_fill_manual(values = c("#FD121A", "#1222fd")) +
-  annotate(geom = "text", x = 1, y = -30, label = "S1", colour ="white", angle = 0, size = 5, family = "Francois One") +
-  annotate(geom = "text", x = 9, y = -20, label = "S2", colour ="white", angle = 0, size = 5, family = "Francois One") +
-  annotate(geom = "text", x = 18, y = -13, label = "S3", colour ="white", angle = 0, size = 5, family = "Francois One") +
-  annotate(geom = "text", x = 25, y = -34, label = "S4", colour ="white", angle = 0, size = 5, family = "Francois One") +
-  labs(title = "The Drama of Stranger Things",
-       subtitle = "Distribution of <span style='color:#1222fd'>**positive**</span> 
+  with_outer_glow(geom_bar(aes(x = episode_id, y = total_each_sentiment, fill = colour), stat = "identity"), colour = "white", sigma = 3) +
+  geom_segment(x = 0, xend = 68, y = 0, yend = 0, colour = "#C13EB8", size = 2) +
+  geom_line(aes(x = episode_id, y = average_drama, group  = 1), size = 1, colour = "white") +
+  geom_point(aes(x = episode_id, y = average_drama), colour = "white") +
+  scale_fill_manual(values = c("#C01517", "#3F66DA")) +
+  annotate(geom = "text", x = 1, y = -30, label = "S1",
+           colour ="white", angle = 0, size = 5, family = "Francois One") +
+  annotate(geom = "text", x = 9, y = -20, label = "S2",
+           colour ="white", angle = 0, size = 5, family = "Francois One") +
+  annotate(geom = "text", x = 18, y = -13, label = "S3",
+           colour ="white", angle = 0, size = 5, family = "Francois One") +
+  annotate(geom = "text", x = 25, y = -34, label = "S4",
+           colour ="white", angle = 0, size = 5, family = "Francois One") +
+  annotate(geom = "text", x = 8, y = -40, label = "Season 4 seems to be the most dramatic by far!",
+           colour ="white", angle = 0, size = 5, family = "Francois One") +
+  annotate(geom = "curve", x = 16, xend = 25, y = -40.2,
+           yend = -37, colour = "grey", curvature = 0.06, size = 1, arrow=arrow(type = "closed",
+                                                                               length = unit(2, "mm"))) +
+  labs(title = "Drama of Stranger Things",
+       subtitle = "Distribution of <span style='color:#3F66DA'>**positive**</span> 
        and <span style='color:#FD121A'>**negative**</span> sentiment words in the dialogue of 
-       **Stranger Things**") +
-    theme(plot.background = element_rect(fill = "black", colour = "black"),
+       **Stranger Things**",
+       caption = "Data: 8flix.com | Graphic: Gabe Strain") +
+    theme(plot.background = element_rect(fill = "#37393e", colour = "#37393e"),
           panel.background = element_blank(),
           panel.grid = element_blank(),
           legend.position = "none",
           axis.text = element_blank(),
+          axis.title = element_blank(),
           axis.ticks = element_blank(),
-          plot.title = with_outer_glow(element_text(colour = "white", size = 45, family = "Rubik Mono One"), sigma = 4, colour = "red"))
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+          plot.subtitle = element_markdown(colour = "white", family = "Francois One"),
+          plot.title = element_text(colour = "white", size = 24, family = "Rubik Mono One"),
+          plot.caption = element_text(colour = "#ebe2e1", family = "Francois One"))
 
 
 
