@@ -1,6 +1,8 @@
 # tidytuesday
 
-2022-10-11: Yarn ![Yarn](https://raw.githubusercontent.com/gjpstrain/tidytuesday/main/crochet/yarn_final.png?raw=true)
+2022-17-10: Stranger Things dialogue ![stranger things] (https://raw.githubusercontent.com/gjpstrain/tidytuesday/blob/main/stranger_things/stranger_plot-1.png?raw=true)
+
+2022-10-10: Yarn ![Yarn](https://raw.githubusercontent.com/gjpstrain/tidytuesday/main/crochet/yarn_final.png?raw=true)
 
 2022-03-02: US Alternative Fuel Stations ![Fuel Stations](https://raw.githubusercontent.com/gjpstrain/tidytuesday/main/alt_stations/alternative_fuel_TX_final.png?raw=true)
 
